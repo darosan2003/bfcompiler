@@ -48,27 +48,25 @@ void compiler(char *filename) {
     switch(code[i]) {
       
       case '>':
-        memchunk++;
-
-        if(memchunk > ending) {
+        if(memchunk == ending) {
           fprintf(stderr, "[-] Pointer out of bounds. Position goes above 255\n");
           fprintf(stderr, "[!] Aborting execution\n");
           err = 1;
           break;
         }
 
+        memchunk++;
         break;
 
       case '<':
-        memchunk--;
-
-        if(memchunk < beginning) {
+        if(memchunk == beginning) {
           fprintf(stderr, "[-] Pointer out of bounds. Position goes below 0\n");
           fprintf(stderr, "[!] Aborting execution\n");
           err = 1;
           break;
         }
 
+        memchunk--;
         break;
 
       case '+':
